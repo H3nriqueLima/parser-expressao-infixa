@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="infix-expression-parser.vcxproj" />
+  <Project Path="infix-expression-parser.vcxproj" Id="9a8b8510-e169-4172-bab6-16cb00ea6f3a" />
 </Solution>
