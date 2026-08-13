@@ -1,13 +1,3 @@
-/*
-Fase 1 — Tokenização 
-Pensa em como transformar a string "3 + 4 * (2 - 1)" numa sequência de "pedaços com significado": 
-números, operadores (+ - * /), parênteses. 
-
-Decide a estrutura pra representar um token (pode ser um struct simples com tipo + valor). 
-
-O resultado dessa fase é uma lista de tokens, não mais uma string crua.
-*/
-
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
