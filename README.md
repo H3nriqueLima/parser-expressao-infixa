@@ -8,22 +8,23 @@ Lê uma expressão matemática em texto (ex: `3 + 4 * (2 - 1)`) e calcula o resu
 
 ## Por que existe?
 
-Esse projeto será (ainda em desenvolvimento) feito como exercício de retomada de estudos em C, com foco em entender na prática como um parser recursivo descendente funciona: tokenização de texto, construção de uma gramática em camadas (expressão → termo → fator), e avaliação recursiva respeitando precedência sem precisar de tabela de prioridade explícita.
+Feito como exercício de retomada de estudos em C, com foco em entender na prática como um parser recursivo descendente funciona: tokenização de texto, construção de uma gramática em camadas (expressão → termo → potência → fator), e avaliação recursiva respeitando precedência sem precisar de tabela de prioridade explícita.
 
 ## Operações suportadas
 
-- Soma, subtração, multiplicação, divisão.
-- Parênteses para agrupar sub-expressões.
-- Validação básica de sintaxe (expressão malformada é rejeitada).
+- Soma, subtração, multiplicação, divisão, potência (`^`, associativo à direita).
+- Números decimais (`3.5`) e negativo/positivo unário (`-5`, `-(3 + 4)`).
+- `()`, `[]`, `{}` para agrupar sub-expressões (com validação de correspondência).
+- Validação de sintaxe → caractere inválido, delimitador não fechado, divisão por zero e overflow numérico são rejeitados com mensagem de erro.
 
 ## Como rodar (ainda a desenvolver o arquivo main)
 
 ```bash
-gcc main.c -o parser
+gcc -Wall -Wextra -std=c99 -I include src/main.c -o parser
 ./parser
 ```
 
-Digite uma expressão e pressione enter.
+Roda em loop no terminal, escolhe "Calcular", digita a expressão, vê o resultado, repete.
 
 ## Contexto
 

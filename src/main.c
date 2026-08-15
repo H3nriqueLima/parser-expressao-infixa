@@ -1,3 +1,5 @@
+// Loop de terminal (lê uma expressão digitada, tokeniza, parseia e imprime o resultado (ou erro).
+
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>

@@ -1,3 +1,8 @@
+/*
+Parser recursivo descendente (expression -> term -> power -> factor).
+Recebe uma TokenList e calcula o valor da expressão, sinalizando erro de sintaxe/cálculo via ParserState->has_error.
+*/
+
 #pragma once
 
 #include <token.h>

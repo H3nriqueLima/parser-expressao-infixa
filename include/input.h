@@ -1,3 +1,5 @@
+// Lê uma linha do terminal de forma segura, sem overflow de buffer, removendo o '\n' final ou descartando o resto da linha se não coube.
+
 #pragma once
 
 #include <stdio.h>

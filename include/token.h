@@ -1,3 +1,5 @@
+// Define os tipos de token e a TokenList (array dinâmico de tokens), com as funções de criar, adicionar, imprimir e liberar a lista.
+
 #pragma once
 
 #include <stdlib.h>
