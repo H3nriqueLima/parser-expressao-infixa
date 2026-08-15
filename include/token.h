@@ -6,12 +6,22 @@
 
 typedef enum {
 	NUMBER,
-	OPERATOR,
-	GROUPING_SYMBOL
+	SUM_OPERATOR,
+	SUB_OPERATOR,
+	MULT_OPERATOR,
+	DIV_OPERATOR,
+	POW_OPERATOR,
+	OPEN_PARENTHESES,
+	CLOSE_PARENTHESES,
+	OPEN_BRACKETS,
+	CLOSE_BRACKETS,
+	OPEN_BRACES,
+	CLOSE_BRACES,
+	END_OF_INPUT,
 } ParserTokenType;
 
 typedef union {
-	int number_value;
+	double number_value;
 	char symbol_value;
 } TokenValue;
 
@@ -37,9 +47,7 @@ static inline TokenList* token_list_create(size_t initial_capacity) {
 
 		new_token_list->size = 0;
 		new_token_list->capacity = initial_capacity;
-	} else {
-		return NULL;
-	}
+	} else return NULL;
 
 	return new_token_list;
 }
@@ -91,14 +99,70 @@ static inline void token_list_print(TokenList* token_list) {
 
 		switch (current.token_type) {
 			case NUMBER:
-				printf("  [%zu] NUMBER: %d\n", i, current.token_value.number_value);
+				printf("  [%zu] NUMBER: %g\n", i, current.token_value.number_value);
 				break;
-			case OPERATOR:
-				printf("  [%zu] OPERATOR: %c\n", i, current.token_value.symbol_value);
+			case SUM_OPERATOR:
+				printf("  [%zu] SUM_OPERATOR: %c\n", i, current.token_value.symbol_value);
 				break;
-			case GROUPING_SYMBOL:
-				printf("  [%zu] GROUPING_SYMBOL: %c\n", i, current.token_value.symbol_value);
+			case SUB_OPERATOR:
+				printf("  [%zu] SUB_OPERATOR: %c\n", i, current.token_value.symbol_value);
+				break;
+			case MULT_OPERATOR:
+				printf("  [%zu] MULT_OPERATOR: %c\n", i, current.token_value.symbol_value);
+				break;
+			case DIV_OPERATOR:
+				printf("  [%zu] DIV_OPERATOR: %c\n", i, current.token_value.symbol_value);
+				break;
+			case POW_OPERATOR:
+				printf("  [%zu] POW_OPERATOR: %c\n", i, current.token_value.symbol_value);
+				break;
+			case OPEN_PARENTHESES:
+				printf("  [%zu] OPEN_PARENTHESES: %c\n", i, current.token_value.symbol_value);
+				break;
+			case CLOSE_PARENTHESES:
+				printf("  [%zu] CLOSE_PARENTHESES: %c\n", i, current.token_value.symbol_value);
+				break;
+			case OPEN_BRACKETS:
+				printf("  [%zu] OPEN_BRACKETS: %c\n", i, current.token_value.symbol_value);
+				break;
+			case CLOSE_BRACKETS:
+				printf("  [%zu] CLOSE_BRACKETS: %c\n", i, current.token_value.symbol_value);
+				break;
+			case OPEN_BRACES:
+				printf("  [%zu] OPEN_BRACES: %c\n", i, current.token_value.symbol_value);
+				break;
+			case CLOSE_BRACES:
+				printf("  [%zu] CLOSE_BRACES: %c\n", i, current.token_value.symbol_value);
+				break;
+			default:
+				printf("  [%zu] TOKEN DESCONHECIDO/INTERNO\n", i);
 				break;
 		}
 	}
+}
+
+static bool token_list_add_value_number(TokenList* token_list, double number) {
+	TokenValue t_v;
+	t_v.number_value = number;
+
+	if (!token_list_add(token_list, NUMBER, t_v)) {
+		printf("Erro: Falha ao adicionar token (memória).\n");
+		token_list_destroy(&token_list);
+		return false;
+	}
+
+	return true;
+}
+
+static bool token_list_add_value_symbol(TokenList* token_list, ParserTokenType token_type, char symbol) {
+	TokenValue t_v;
+	t_v.symbol_value = symbol;
+
+	if (!token_list_add(token_list, token_type, t_v)) {
+		printf("Erro: Falha ao adicionar token (memória).\n");
+		token_list_destroy(&token_list);
+		return false;
+	}
+
+	return true;
 }

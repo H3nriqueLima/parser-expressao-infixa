@@ -150,6 +150,8 @@
     <ClCompile Include="src\main.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\input.h" />
+    <ClInclude Include="include\parser.h" />
     <ClInclude Include="include\token.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
